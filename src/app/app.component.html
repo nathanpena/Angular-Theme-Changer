@@ -44,11 +44,11 @@
     </div>
   </div -->>
   <div class="container-fluid">
-    <h2 style="margin-top:100px">Themes</h2>
+    <h2 style="margin-top:50px">Themes</h2>
     <div class="row">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4" *ngFor="let theme of themes" style="margin-bottom: 4em">
+          <div class="col-md-4" *ngFor="let theme of themes; let i = index" style="margin-bottom: 4em">
             <div class="card text-center" style="width: 20rem;">
               <img class="card-img-top" [alt]="theme.name" [src]="theme.thumbnail" />
               <div class="card-block">
@@ -60,8 +60,43 @@
                 </p>
                 <p>
                   <a class="btn btn-primary" href="#" (click)="onThemeSelected(theme.cssMin)">Select</a>
-                  <a class="btn" [href]="theme.preview" target="_blank">Preview</a>
+                  <a [id]="i" [href]="'#'+theme.name+i" role="button" class="btn" data-toggle="modal">Preview</a>
                 </p>
+                <!-- modal start-->
+
+                <!--Modal: Name-->
+                <div class="modal fade" [id]="theme.name+i" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+
+                    <!--Content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">
+                              {{theme.name}}
+                           </h5> 
+                            <button type="button" class="close" data-dismiss="modal">
+                                
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true">x</span>
+                            </button>
+                          </div>
+                      <!--Body-->
+                      <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe class="e2e-iframe-trusted-src embed-responsive-item" [src]="theme.preview | safe" allowfullscreen></iframe>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                    <!--/.Content-->
+
+                  </div>
+                </div>
+                <!--Modal: Name-->
+
+                <!-- modal end -->
               </div>
             </div>
           </div>

@@ -4,10 +4,12 @@ import { ThemesService } from './services/themes.service';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
